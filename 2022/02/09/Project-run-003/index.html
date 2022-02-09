@@ -20,17 +20,18 @@
 <meta property="og:description" content="修改博客，codeql深入学习，简单算法，背英语单词">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/castexpr.png">
+<meta property="og:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/constructor-call.png">
 <meta property="article:published_time" content="2022-02-09T10:55:53.000Z">
-<meta property="article:modified_time" content="2022-02-09T16:31:21.728Z">
+<meta property="article:modified_time" content="2022-02-09T20:31:28.097Z">
 <meta property="article:author" content="Thule">
 <meta property="article:tag" content="Project_run">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/castexpr.png">
-    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1644424284319">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1644438720327">
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644424284319">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644424284319">
-    <link rel="stylesheet" href="/css/style.css?v=1644424284319">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644438720327">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644438720327">
+    <link rel="stylesheet" href="/css/style.css?v=1644438720327">
      
     
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -165,6 +166,28 @@
 <h3 id="QL代码："><a href="#QL代码：" class="headerlink" title="QL代码："></a>QL代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 自己写的不是那么正确的demo ql</span><br><span class="hljs-comment">import cpp </span><br><span class="hljs-comment">from Cast c</span><br><span class="hljs-comment">where c.getType() instanceof FloatingPointType </span><br><span class="hljs-comment">    and c.getExpr().getType() instanceof IntType</span><br><span class="hljs-comment">select c</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">import</span> cpp<br><br>from Cast c<br>where<br>  c.<span class="hljs-built_in">getType</span>() instanceof FloatingPointType<br>  <span class="hljs-keyword">and</span> c.<span class="hljs-built_in">getExpr</span>().<span class="hljs-built_in">getType</span>() instanceof IntegralType<br>select c<br></code></pre></td></tr></table></figure>
 
 <h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><img src="/2022/02/09/Project-run-003/castexpr.png" class="">
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">getExpr() <span class="hljs-regexp">//</span>获得右式<br>instanceof ... <span class="hljs-regexp">//</span>判定是否为...的子类<br>FloatingPointType <span class="hljs-regexp">//</span>浮点类型，不是float类型指针哈哈哈<br>IntegralType <span class="hljs-regexp">//</span>除了enum和浮点数，都可以是这个子类<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Constructor-call"><a href="#Constructor-call" class="headerlink" title="Constructor-call:"></a>Constructor-call:</h2><p>寻找调用构造函数</p>
+<h3 id="QL代码：-1"><a href="#QL代码：-1" class="headerlink" title="QL代码："></a>QL代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp <br>from NewExpr <span class="hljs-keyword">new</span>, Constructor c<br>where <br>    c = <span class="hljs-keyword">new</span>.<span class="hljs-built_in">getInitializer</span>().(ConstructorCall).<span class="hljs-built_in">getTarget</span>() <br>    <span class="hljs-keyword">and</span> c.<span class="hljs-built_in">hasName</span>(<span class="hljs-string">&quot;Mynew&quot;</span>) <br>select <span class="hljs-keyword">new</span> <br></code></pre></td></tr></table></figure>
+
+<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><img src="/2022/02/09/Project-run-003/constructor-call.png" class="">
+
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>先通过右式的new加上寻找构造的约束，之后强制类型转换为ConstructorCall（FunctionCall的派生）获取目标，最后通过名字寻找</p>
+<h2 id="Derives-from-class："><a href="#Derives-from-class：" class="headerlink" title="Derives-from-class："></a>Derives-from-class：</h2><p>寻找派生类</p>
+<h3 id="QL代码：-2"><a href="#QL代码：-2" class="headerlink" title="QL代码："></a>QL代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp <br>from Class c <br>where <br>    c.getABaseClass+().<span class="hljs-built_in">getName</span>().<span class="hljs-built_in">matches</span>(<span class="hljs-string">&quot;exception&quot;</span>) <br>    <span class="hljs-keyword">and</span> c.<span class="hljs-built_in">getNamespace</span>().<span class="hljs-built_in">getName</span>().<span class="hljs-built_in">matches</span>(<span class="hljs-string">&quot;std&quot;</span>) <br>select c <br></code></pre></td></tr></table></figure>
+
+<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3>
+
+<h3 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h3><p>通过迭代获得最顶层基类的名字且进行约束，由于exception本身就是std命名空间的，所以只要对子类进行命名空间的约束即可</p>
+<h2 id="困惑："><a href="#困惑：" class="headerlink" title="困惑："></a>困惑：</h2><ol>
+<li>注释里的4.1.1啥的，到底是指的啥，懵逼</li>
+<li>Catch-exception的内容看不懂，就先放着了</li>
+</ol>
+
   </article>
 
   
@@ -219,7 +242,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">博客修改：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">codeql深入学习:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Castexpr"><span class="toc-number">3.1.</span> <span class="toc-text">Castexpr:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">3.1.2.</span> <span class="toc-text">结果：</span></a></li></ol></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">博客修改：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">codeql深入学习:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Castexpr"><span class="toc-number">3.1.</span> <span class="toc-text">Castexpr:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">3.1.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">3.1.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor-call"><span class="toc-number">3.2.</span> <span class="toc-text">Constructor-call:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Derives-from-class%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">Derives-from-class：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-number">3.3.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%B0%E6%83%91%EF%BC%9A"><span class="toc-number">3.4.</span> <span class="toc-text">困惑：</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -251,7 +274,7 @@
 
  
 
-<script async src="/js/app.js?v=1644424284322"></script>
+<script async src="/js/app.js?v=1644438720331"></script>
 
 
 
