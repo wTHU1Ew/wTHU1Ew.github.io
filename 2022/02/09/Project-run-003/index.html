@@ -12,26 +12,27 @@
     
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
-    <meta name="description" content="修改博客，codeql深入学习，简单算法，背英语单词">
+    <meta name="description" content="修改博客，codeql深入学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project-run-003">
 <meta property="og:url" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="修改博客，codeql深入学习，简单算法，背英语单词">
+<meta property="og:description" content="修改博客，codeql深入学习">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/castexpr.png">
 <meta property="og:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/constructor-call.png">
+<meta property="og:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/derives-from-class.png">
 <meta property="article:published_time" content="2022-02-09T10:55:53.000Z">
-<meta property="article:modified_time" content="2022-02-09T20:31:28.097Z">
+<meta property="article:modified_time" content="2022-02-12T18:03:14.653Z">
 <meta property="article:author" content="Thule">
-<meta property="article:tag" content="Project_run">
+<meta property="article:tag" content="Project-run">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wthu1ew.github.io/2022/02/09/Project-run-003/castexpr.png">
-    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1644438720327">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1644691797241">
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644438720327">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644438720327">
-    <link rel="stylesheet" href="/css/style.css?v=1644438720327">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1644691797241">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1644691797241">
+    <link rel="stylesheet" href="/css/style.css?v=1644691797241">
      
     
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -57,7 +58,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>Articles</span>4</div>
+        <div><span>Articles</span>5</div>
         <div><span>Tags</span>1</div>
         <div><span>Categories</span>0</div>
     </div>
@@ -120,7 +121,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/Project-run/" style="font-size: 10px;">Project_run</a>
+      <a href="/tags/Project-run/" style="font-size: 10px;">Project-run</a>
     </div>
     
   </div>
@@ -153,7 +154,7 @@
 
       
 
-      <p>修改博客，codeql深入学习，简单算法，背英语单词</p>
+      <p>修改博客，codeql深入学习</p>
 <span id="more"></span>
 
 <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>前两天和Sakura聊了一下，他说codeql不是一个特别完善的工具，最好的用处是不用数据流也能找到的漏洞模式，就好像</p>
@@ -180,9 +181,13 @@
 <h2 id="Derives-from-class："><a href="#Derives-from-class：" class="headerlink" title="Derives-from-class："></a>Derives-from-class：</h2><p>寻找派生类</p>
 <h3 id="QL代码：-2"><a href="#QL代码：-2" class="headerlink" title="QL代码："></a>QL代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp <br>from Class c <br>where <br>    c.getABaseClass+().<span class="hljs-built_in">getName</span>().<span class="hljs-built_in">matches</span>(<span class="hljs-string">&quot;exception&quot;</span>) <br>    <span class="hljs-keyword">and</span> c.<span class="hljs-built_in">getNamespace</span>().<span class="hljs-built_in">getName</span>().<span class="hljs-built_in">matches</span>(<span class="hljs-string">&quot;std&quot;</span>) <br>select c <br></code></pre></td></tr></table></figure>
 
-<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3>
+<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><img src="/2022/02/09/Project-run-003/derives-from-class.png" class="">
 
 <h3 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h3><p>通过迭代获得最顶层基类的名字且进行约束，由于exception本身就是std命名空间的，所以只要对子类进行命名空间的约束即可</p>
+<h2 id="Emptyblock"><a href="#Emptyblock" class="headerlink" title="Emptyblock:"></a>Emptyblock:</h2><h3 id="总结：-3"><a href="#总结：-3" class="headerlink" title="总结："></a>总结：</h3><p>通过count对getAStmt()进行了计数的一个简单封装，不高兴写demo了</p>
+<h2 id="Emptythen"><a href="#Emptythen" class="headerlink" title="Emptythen:"></a>Emptythen:</h2><h3 id="QL代码：-3"><a href="#QL代码：-3" class="headerlink" title="QL代码："></a>QL代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp <br>from IfStmt is <br>where <br>    is.<span class="hljs-built_in">getThen</span>().(BlockStmt).<span class="hljs-built_in">getNumStmt</span>()=<span class="hljs-number">0</span> <br>select is <br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-4"><a href="#总结：-4" class="headerlink" title="总结："></a>总结：</h3><p>看一下留个印象就行，不难</p>
 <h2 id="困惑："><a href="#困惑：" class="headerlink" title="困惑："></a>困惑：</h2><ol>
 <li>注释里的4.1.1啥的，到底是指的啥，懵逼</li>
 <li>Catch-exception的内容看不懂，就先放着了</li>
@@ -206,7 +211,7 @@
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Project-run/" rel="tag">Project_run</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Project-run/" rel="tag">Project-run</a>
     
 </div>
 
@@ -242,7 +247,7 @@
                               <button class="mdui-fab catalog" style="overflow:unset;">
                                   <i class="nexmoefont icon-i-catalog"></i>
                                   <div class="nexmoe-toc">
-                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">博客修改：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">codeql深入学习:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Castexpr"><span class="toc-number">3.1.</span> <span class="toc-text">Castexpr:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">3.1.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">3.1.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor-call"><span class="toc-number">3.2.</span> <span class="toc-text">Constructor-call:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Derives-from-class%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">Derives-from-class：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-number">3.3.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%B0%E6%83%91%EF%BC%9A"><span class="toc-number">3.4.</span> <span class="toc-text">困惑：</span></a></li></ol></li></ol>
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">博客修改：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="toc-number">3.</span> <span class="toc-text">codeql深入学习:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Castexpr"><span class="toc-number">3.1.</span> <span class="toc-text">Castexpr:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">3.1.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">3.1.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">3.1.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor-call"><span class="toc-number">3.2.</span> <span class="toc-text">Constructor-call:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Derives-from-class%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">Derives-from-class：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-2"><span class="toc-number">3.3.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-number">3.3.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Emptyblock"><span class="toc-number">3.4.</span> <span class="toc-text">Emptyblock:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-3"><span class="toc-number">3.4.1.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Emptythen"><span class="toc-number">3.5.</span> <span class="toc-text">Emptythen:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QL%E4%BB%A3%E7%A0%81%EF%BC%9A-3"><span class="toc-number">3.5.1.</span> <span class="toc-text">QL代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-4"><span class="toc-number">3.5.2.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%B0%E6%83%91%EF%BC%9A"><span class="toc-number">3.6.</span> <span class="toc-text">困惑：</span></a></li></ol></li></ol>
                                   </div>
                               </button>
                           
@@ -274,7 +279,7 @@
 
  
 
-<script async src="/js/app.js?v=1644438720331"></script>
+<script async src="/js/app.js?v=1644691797245"></script>
 
 
 

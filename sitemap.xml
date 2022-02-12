@@ -2,18 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://wthu1ew.github.io/2022/02/09/Project-run-003/</loc>
+    <loc>https://wthu1ew.github.io/2022/02/13/Project-run-004/</loc>
     
-    <lastmod>2022-02-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://wthu1ew.github.io/2022/02/04/Project-run-001/</loc>
-    
-    <lastmod>2022-02-09</lastmod>
+    <lastmod>2022-02-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +13,25 @@
   <url>
     <loc>https://wthu1ew.github.io/2022/02/05/Project-run-002/</loc>
     
-    <lastmod>2022-02-09</lastmod>
+    <lastmod>2022-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wthu1ew.github.io/2022/02/09/Project-run-003/</loc>
+    
+    <lastmod>2022-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://wthu1ew.github.io/2022/02/04/Project-run-001/</loc>
+    
+    <lastmod>2022-02-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +49,7 @@
 
   <url>
     <loc>https://wthu1ew.github.io/</loc>
-    <lastmod>2022-02-09</lastmod>
+    <lastmod>2022-02-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -48,7 +57,7 @@
   
   <url>
     <loc>https://wthu1ew.github.io/tags/Project-run/</loc>
-    <lastmod>2022-02-09</lastmod>
+    <lastmod>2022-02-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
