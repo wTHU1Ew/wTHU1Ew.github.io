@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    
+    <title>Project-run-006 - Hexo</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
+    <meta name="description" content="codeql深入学习，cpp学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project-run-006">
+<meta property="og:url" content="https://wthu1ew.github.io/2022/02/21/Project-run-006/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="codeql深入学习，cpp学习">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wthu1ew.github.io/2022/02/21/Project-run-006/unusedmethod.png">
+<meta property="og:image" content="https://wthu1ew.github.io/2022/02/21/Project-run-006/voidreturntype.png">
+<meta property="article:published_time" content="2022-02-21T12:30:44.000Z">
+<meta property="article:modified_time" content="2022-02-21T16:56:52.025Z">
+<meta property="article:author" content="Thule">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wthu1ew.github.io/2022/02/21/Project-run-006/unusedmethod.png">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1645462620930">
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1645462620930">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1645462620930">
+    <link rel="stylesheet" href="/css/style.css?v=1645462620930">
+     
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Thule" class="mdui-btn mdui-btn-icon"><img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Thule">
+            <img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule" alt="Thule">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>7</div>
+        <div><span>Tags</span>1</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:wthu1ew.github.io" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/24049194" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/wTHU1Ew/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Project-run/" style="font-size: 10px;">Project-run</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 Thule
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 67.21948691370821%;"> 
+              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="Project-run-006" class="lazyload">
+              <h1>Project-run-006</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年02月21日</a>
+</div>
+
+      
+
+      <p>codeql深入学习，cpp学习</p>
+<span id="more"></span>
+
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>codeql cpp的snippets终于分析完了（真是懒狗，拖了那么久），以后简历可以改成熟悉codeql而不是了解啦！</p>
+<h1 id="codeql深入学习"><a href="#codeql深入学习" class="headerlink" title="codeql深入学习"></a>codeql深入学习</h1><h2 id="ternaryconditional："><a href="#ternaryconditional：" class="headerlink" title="ternaryconditional："></a>ternaryconditional：</h2><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">import</span> cpp <br>from ConditionalExpr ce <br>where <br>    ce.<span class="hljs-built_in">getThen</span>().<span class="hljs-built_in">getType</span>() != ce.<span class="hljs-built_in">getElse</span>().<span class="hljs-built_in">getType</span>()<br>select ce <br></code></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>判定 ：？的返回值类型是否一致</p>
+<h2 id="todocomment："><a href="#todocomment：" class="headerlink" title="todocomment："></a>todocomment：</h2><h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">import</span> cpp <br>from Comment c <br>where <br>    c.<span class="hljs-built_in">getContents</span>().<span class="hljs-built_in">matches</span>(<span class="hljs-string">&quot;%TODO%&quot;</span>)<br>select c <br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>查找指定注释（感觉效率不如ctrl+F…）</p>
+<h2 id="toomanyparams："><a href="#toomanyparams：" class="headerlink" title="toomanyparams："></a>toomanyparams：</h2><h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> cpp <br><span class="hljs-keyword">from</span> <span class="hljs-keyword">Function</span> f <br><span class="hljs-keyword">where</span> <br>    f.getNumberOfParameters() &gt;= <span class="hljs-number">10</span> <br><span class="hljs-keyword">select</span> f <br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h3><p>参数太他妈的多啦～</p>
+<h2 id="unusedlocalvar："><a href="#unusedlocalvar：" class="headerlink" title="unusedlocalvar："></a>unusedlocalvar：</h2><h3 id="代码：-3"><a href="#代码：-3" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">import</span> cpp <br>from LocalScopeVariable lsv, LocalVariable lv<br>where <br>    <span class="hljs-comment">//not lsv instanceof Parameter </span><br>    <span class="hljs-comment">//and not exists(lsv.getAnAccess())</span><br>    <span class="hljs-function"><span class="hljs-keyword">not</span> <span class="hljs-title">exists</span><span class="hljs-params">( lv.getAnAccess() )</span></span><br><span class="hljs-function">select lv</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3>
+
+<h3 id="总结：-3"><a href="#总结：-3" class="headerlink" title="总结："></a>总结：</h3><p>寻找未被使用的变量，因为感觉loaclvariable写的简单点就用这个了。</p>
+<p>LocalScopeVariable包含所有变量，包括函数参数。</p>
+<p>StackScopeVariable不包含static和pthread，static基本是存在data或者bss段，pthread忘了。</p>
+<p>LocalVariable不包含函数参数。</p>
+<h2 id="unusedmethod："><a href="#unusedmethod：" class="headerlink" title="unusedmethod："></a>unusedmethod：</h2><h3 id="代码：-4"><a href="#代码：-4" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp <br>from MemberFunction mf, FunctionCall fc <br>where <br>    mf.<span class="hljs-built_in">getFile</span>().<span class="hljs-built_in">getRelativePath</span>() = <span class="hljs-string">&quot;a.cpp&quot;</span><br>    <span class="hljs-keyword">and</span> fc.<span class="hljs-built_in">getTarget</span>() = mf <br>    <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> mf.<span class="hljs-built_in">isVirtual</span>() <br>    <span class="hljs-keyword">and</span> mf.<span class="hljs-built_in">isPrivate</span>()<br>    <br>select fc.<span class="hljs-built_in">getLocation</span>().<span class="hljs-built_in">getStartLine</span>() ,fc, mf<br></code></pre></td></tr></table></figure>
+
+<h3 id="结果：-1"><a href="#结果：-1" class="headerlink" title="结果："></a>结果：</h3><img src="/2022/02/21/Project-run-006/unusedmethod.png" class="">
+
+<h3 id="总结：-4"><a href="#总结：-4" class="headerlink" title="总结："></a>总结：</h3><p>其实思路还是很清晰的，但是自己做了很久，原因是我把使用函数的查询和使用变量的弄混了，都用了类似accesss的查询，但实际上函数得用call查询，而函数的access是查询的类似函数取地址的操作：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">&amp;functionname;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="unusedparam："><a href="#unusedparam：" class="headerlink" title="unusedparam："></a>unusedparam：</h2><h3 id="代码：-5"><a href="#代码：-5" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">import</span> cpp </span><br><span class="hljs-function">from Parameter p </span><br><span class="hljs-function">where </span><br><span class="hljs-function">    <span class="hljs-keyword">not</span> <span class="hljs-title">exists</span><span class="hljs-params">( p.getAnAccess() )</span> </span><br><span class="hljs-function">    <span class="hljs-keyword">and</span> p.<span class="hljs-title">isNamed</span><span class="hljs-params">()</span></span><br><span class="hljs-function">select p </span><br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-5"><a href="#总结：-5" class="headerlink" title="总结："></a>总结：</h3><p>主要就那个isNamed要注意一下，但是这种不命名的参数用法我忘了叫啥了</p>
+<h2 id="voidreturntype："><a href="#voidreturntype：" class="headerlink" title="voidreturntype："></a>voidreturntype：</h2><h3 id="代码：-6"><a href="#代码：-6" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">import</span> cpp <br>from MemberFunction mf <br>where <br>    mf.<span class="hljs-built_in">hasSpecifier</span>(<span class="hljs-string">&quot;const&quot;</span>) <br>    <span class="hljs-keyword">and</span> mf.<span class="hljs-built_in">getType</span>() instanceof VoidType  <br>select mf <br></code></pre></td></tr></table></figure>
+
+<h3 id="结果：-2"><a href="#结果：-2" class="headerlink" title="结果："></a>结果：</h3><img src="/2022/02/21/Project-run-006/voidreturntype.png" class="">
+
+<h3 id="总结：-6"><a href="#总结：-6" class="headerlink" title="总结："></a>总结：</h3><p>草，没见过的cpp用法增加了…</p>
+<h2 id="volatilevariable："><a href="#volatilevariable：" class="headerlink" title="volatilevariable："></a>volatilevariable：</h2><h3 id="代码：-7"><a href="#代码：-7" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">import</span> cpp<br><br>from Variable f<br>where f.<span class="hljs-built_in">isVolatile</span>()<br>select f<br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-7"><a href="#总结：-7" class="headerlink" title="总结："></a>总结：</h3><p>cpp没见过的用法喜加一</p>
+<h1 id="cpp学习："><a href="#cpp学习：" class="headerlink" title="cpp学习："></a>cpp学习：</h1><h2 id="关于类的那些事："><a href="#关于类的那些事：" class="headerlink" title="关于类的那些事："></a>关于类的那些事：</h2>
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>Author：</strong>Thule<br>
+        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/02/21/Project-run-006/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;21&#x2F;Project-run-006&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;21&#x2F;Project-run-006&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#codeql%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">codeql深入学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ternaryconditional%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">ternaryconditional：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">2.1.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">2.1.2.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#todocomment%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">todocomment：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toomanyparams%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">toomanyparams：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unusedlocalvar%EF%BC%9A"><span class="toc-number">2.4.</span> <span class="toc-text">unusedlocalvar：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="toc-number">2.4.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-3"><span class="toc-number">2.4.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unusedmethod%EF%BC%9A"><span class="toc-number">2.5.</span> <span class="toc-text">unusedmethod：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-4"><span class="toc-number">2.5.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-1"><span class="toc-number">2.5.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-4"><span class="toc-number">2.5.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unusedparam%EF%BC%9A"><span class="toc-number">2.6.</span> <span class="toc-text">unusedparam：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-5"><span class="toc-number">2.6.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-5"><span class="toc-number">2.6.2.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#voidreturntype%EF%BC%9A"><span class="toc-number">2.7.</span> <span class="toc-text">voidreturntype：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-6"><span class="toc-number">2.7.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A-2"><span class="toc-number">2.7.2.</span> <span class="toc-text">结果：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-6"><span class="toc-number">2.7.3.</span> <span class="toc-text">总结：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#volatilevariable%EF%BC%9A"><span class="toc-number">2.8.</span> <span class="toc-text">volatilevariable：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%EF%BC%9A-7"><span class="toc-number">2.8.1.</span> <span class="toc-text">代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-7"><span class="toc-number">2.8.2.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cpp%E5%AD%A6%E4%B9%A0%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">cpp学习：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%B1%BB%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">关于类的那些事：</span></a></li></ol></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1645462620937"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
