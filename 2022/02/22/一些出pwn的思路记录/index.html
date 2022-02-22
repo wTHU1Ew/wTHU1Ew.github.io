@@ -4,7 +4,7 @@
 
 <head>
     
-    <title>杂谈 - Hexo</title>
+    <title>一些出pwn的思路记录 - Hexo</title>
     <meta charset="UTF-8">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -12,22 +12,22 @@
     
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
-    <meta name="description" content="本人纯懒狗pwn手，博客建设中 个人成分很杂，鉴定为引流蛆">
+    <meta name="description" content="raw 结构体元素指定位数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂谈">
-<meta property="og:url" content="https://wthu1ew.github.io/2022/02/02/%E6%9D%82%E8%B0%88/index.html">
+<meta property="og:title" content="一些出pwn的思路记录">
+<meta property="og:url" content="https://wthu1ew.github.io/2022/02/22/%E4%B8%80%E4%BA%9B%E5%87%BApwn%E7%9A%84%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本人纯懒狗pwn手，博客建设中 个人成分很杂，鉴定为引流蛆">
+<meta property="og:description" content="raw 结构体元素指定位数">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-01T18:18:37.627Z">
-<meta property="article:modified_time" content="2022-02-05T21:04:25.670Z">
+<meta property="article:published_time" content="2022-02-22T13:26:41.000Z">
+<meta property="article:modified_time" content="2022-02-22T13:53:40.361Z">
 <meta property="article:author" content="Thule">
 <meta name="twitter:card" content="summary">
-    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1645553337174">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1645553337144">
     
-    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1645553337174">
-    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1645553337174">
-    <link rel="stylesheet" href="/css/style.css?v=1645553337174">
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1645553337144">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1645553337144">
+    <link rel="stylesheet" href="/css/style.css?v=1645553337144">
      
     
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -138,19 +138,23 @@
   <article>
       
           <div class="nexmoe-post-cover" style="padding-bottom: 67.21948691370821%;"> 
-              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="杂谈" class="lazyload">
-              <h1>杂谈</h1>
+              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="一些出pwn的思路记录" class="lazyload">
+              <h1>一些出pwn的思路记录</h1>
           </div>
       
       
       <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2022年02月02日</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年02月22日</a>
 </div>
 
       
 
-      <p>本人纯懒狗pwn手，博客建设中</p>
-<p>个人成分很杂，鉴定为引流蛆</p>
+      <span id="more"></span>
+
+<ol>
+<li>raw</li>
+<li>结构体元素指定位数</li>
+</ol>
 
   </article>
 
@@ -158,7 +162,7 @@
       
     <div class="nexmoe-post-copyright">
         <strong>Author：</strong>Thule<br>
-        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/02/02/%E6%9D%82%E8%B0%88/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;02&#x2F;%E6%9D%82%E8%B0%88&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;02&#x2F;%E6%9D%82%E8%B0%88&#x2F;</a><br>
+        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/02/22/%E4%B8%80%E4%BA%9B%E5%87%BApwn%E7%9A%84%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E4%B8%80%E4%BA%9B%E5%87%BApwn%E7%9A%84%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;02&#x2F;22&#x2F;%E4%B8%80%E4%BA%9B%E5%87%BApwn%E7%9A%84%E6%80%9D%E8%B7%AF%E8%AE%B0%E5%BD%95&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -229,7 +233,7 @@
 
  
 
-<script async src="/js/app.js?v=1645553337175"></script>
+<script async src="/js/app.js?v=1645553337147"></script>
 
 
 
