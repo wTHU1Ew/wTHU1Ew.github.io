@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    
+    <title>Project-run-009 - Hexo</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
+    <meta name="description" content="前言：前几天疯狂沉迷赛马娘和老头环，可算是打腻了，开始学习！ cpp学习： 以后function point parameters尽量用const修饰一下吧   auto类型只能单值初始化，而不能用来初始化列表  sad，函数指针好绕，两个解决方法 1234567&#x2F;&#x2F;1.auto ptr &#x3D; &amp;func;&#x2F;&#x2F;但是要注意自己提供的初值类型是否正确&#x2F;&#x2F;2.typedef double *">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project-run-009">
+<meta property="og:url" content="https://wthu1ew.github.io/2022/03/02/Project-run-009/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言：前几天疯狂沉迷赛马娘和老头环，可算是打腻了，开始学习！ cpp学习： 以后function point parameters尽量用const修饰一下吧   auto类型只能单值初始化，而不能用来初始化列表  sad，函数指针好绕，两个解决方法 1234567&#x2F;&#x2F;1.auto ptr &#x3D; &amp;func;&#x2F;&#x2F;但是要注意自己提供的初值类型是否正确&#x2F;&#x2F;2.typedef double *">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wthu1ew.github.io/2022/03/02/Project-run-009/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E4%B8%8Econst.png">
+<meta property="article:published_time" content="2022-03-02T06:34:32.000Z">
+<meta property="article:modified_time" content="2022-03-03T11:10:54.416Z">
+<meta property="article:author" content="Thule">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wthu1ew.github.io/2022/03/02/Project-run-009/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E4%B8%8Econst.png">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1647343340746">
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1647343340746">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1647343340746">
+    <link rel="stylesheet" href="/css/style.css?v=1647343340746">
+     
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Thule" class="mdui-btn mdui-btn-icon"><img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Thule">
+            <img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule" alt="Thule">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>16</div>
+        <div><span>Tags</span>3</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:wthu1ew.github.io" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/24049194" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/wTHU1Ew/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Project-run/" style="font-size: 20px;">Project-run</a> <a href="/tags/pwn-coellege/" style="font-size: 10px;">pwn coellege</a> <a href="/tags/pwn-college/" style="font-size: 15px;">pwn college</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 Thule
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 67.21948691370821%;"> 
+              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="Project-run-009" class="lazyload">
+              <h1>Project-run-009</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年03月02日</a>
+</div>
+
+      
+
+      <span id="more"></span>
+
+<h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>前几天疯狂沉迷赛马娘和老头环，可算是打腻了，开始学习！</p>
+<h1 id="cpp学习："><a href="#cpp学习：" class="headerlink" title="cpp学习："></a>cpp学习：</h1><ol>
+<li><p>以后function point parameters尽量用const修饰一下吧</p>
+<img src="/2022/03/02/Project-run-009/%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E4%B8%8Econst.png" class="">
+</li>
+<li><p>auto类型只能单值初始化，而不能用来初始化列表</p>
+</li>
+<li><p>sad，函数指针好绕，两个解决方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//1.</span><br><span class="hljs-keyword">auto</span> ptr = &amp;func;<br><span class="hljs-comment">//但是要注意自己提供的初值类型是否正确</span><br><br><span class="hljs-comment">//2.</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">double</span> * (*type_name)(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)<br><span class="hljs-comment">//like this，注意type_name的位置就行了</span><br></code></pre></td></tr></table></figure>
+
+<p>​</p>
+</li>
+</ol>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>Author：</strong>Thule<br>
+        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/03/02/Project-run-009/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;02&#x2F;Project-run-009&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;02&#x2F;Project-run-009&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cpp%E5%AD%A6%E4%B9%A0%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">cpp学习：</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1647343340747"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    
+    <title>Project-run-010 - Hexo</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
+    <meta name="description" content="pwn college 第二章 1. 直接打开2. 根据info输入值3. 设置arg4. info提到了environment variable所以export设置5. 输入重定向6. 输出重定向7. 不能一个一个unset，不仅傻逼还总是剩一个，加上env -i就行了8. 在home文件夹写bash脚本，用bash运行9. 同8，然后手动输入10. 同9，加参数11. 同912. 同9，b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project-run-010">
+<meta property="og:url" content="https://wthu1ew.github.io/2022/03/08/Project-run-010/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="pwn college 第二章 1. 直接打开2. 根据info输入值3. 设置arg4. info提到了environment variable所以export设置5. 输入重定向6. 输出重定向7. 不能一个一个unset，不仅傻逼还总是剩一个，加上env -i就行了8. 在home文件夹写bash脚本，用bash运行9. 同8，然后手动输入10. 同9，加参数11. 同912. 同9，b">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-08T02:37:20.000Z">
+<meta property="article:modified_time" content="2022-03-15T04:11:07.050Z">
+<meta property="article:author" content="Thule">
+<meta property="article:tag" content="pwn college">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1647343340745">
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1647343340745">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1647343340745">
+    <link rel="stylesheet" href="/css/style.css?v=1647343340745">
+     
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Thule" class="mdui-btn mdui-btn-icon"><img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Thule">
+            <img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule" alt="Thule">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>16</div>
+        <div><span>Tags</span>3</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:wthu1ew.github.io" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/24049194" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/wTHU1Ew/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Project-run/" style="font-size: 20px;">Project-run</a> <a href="/tags/pwn-coellege/" style="font-size: 10px;">pwn coellege</a> <a href="/tags/pwn-college/" style="font-size: 15px;">pwn college</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 Thule
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 67.21948691370821%;"> 
+              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="Project-run-010" class="lazyload">
+              <h1>Project-run-010</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年03月08日</a>
+</div>
+
+      
+
+      <span id="more"></span>
+
+<p>pwn college 第二章</p>
+<h2 id="1-直接打开"><a href="#1-直接打开" class="headerlink" title="1. 直接打开"></a>1. 直接打开</h2><h2 id="2-根据info输入值"><a href="#2-根据info输入值" class="headerlink" title="2. 根据info输入值"></a>2. 根据info输入值</h2><h2 id="3-设置arg"><a href="#3-设置arg" class="headerlink" title="3. 设置arg"></a>3. 设置arg</h2><h2 id="4-info提到了environment-variable所以export设置"><a href="#4-info提到了environment-variable所以export设置" class="headerlink" title="4. info提到了environment variable所以export设置"></a>4. info提到了environment variable所以export设置</h2><h2 id="5-输入重定向"><a href="#5-输入重定向" class="headerlink" title="5. 输入重定向"></a>5. 输入重定向</h2><h2 id="6-输出重定向"><a href="#6-输出重定向" class="headerlink" title="6. 输出重定向"></a>6. 输出重定向</h2><h2 id="7-不能一个一个unset，不仅傻逼还总是剩一个，加上env-i就行了"><a href="#7-不能一个一个unset，不仅傻逼还总是剩一个，加上env-i就行了" class="headerlink" title="7. 不能一个一个unset，不仅傻逼还总是剩一个，加上env -i就行了"></a>7. 不能一个一个unset，不仅傻逼还总是剩一个，加上env -i就行了</h2><h2 id="8-在home文件夹写bash脚本，用bash运行"><a href="#8-在home文件夹写bash脚本，用bash运行" class="headerlink" title="8. 在home文件夹写bash脚本，用bash运行"></a>8. 在home文件夹写bash脚本，用bash运行</h2><h2 id="9-同8，然后手动输入"><a href="#9-同8，然后手动输入" class="headerlink" title="9. 同8，然后手动输入"></a>9. 同8，然后手动输入</h2><h2 id="10-同9，加参数"><a href="#10-同9，加参数" class="headerlink" title="10. 同9，加参数"></a>10. 同9，加参数</h2><h2 id="11-同9"><a href="#11-同9" class="headerlink" title="11. 同9"></a>11. 同9</h2><h2 id="12-同9，bash脚本加入重定向-lt-tmp下那个文件"><a href="#12-同9，bash脚本加入重定向-lt-tmp下那个文件" class="headerlink" title="12. 同9，bash脚本加入重定向 &lt; tmp下那个文件"></a>12. 同9，bash脚本加入重定向 &lt; tmp下那个文件</h2><h2 id="13-同9，bash脚本加入重定向-gt-到tmp下那个文件"><a href="#13-同9，bash脚本加入重定向-gt-到tmp下那个文件" class="headerlink" title="13. 同9，bash脚本加入重定向 &gt; 到tmp下那个文件"></a>13. 同9，bash脚本加入重定向 &gt; 到tmp下那个文件</h2><h2 id="14-同9，加前缀"><a href="#14-同9，加前缀" class="headerlink" title="14. 同9，加前缀"></a>14. 同9，加前缀</h2><h2 id="15-切换到ipython，在shell命令前加上-就行了"><a href="#15-切换到ipython，在shell命令前加上-就行了" class="headerlink" title="15. 切换到ipython，在shell命令前加上!就行了"></a>15. 切换到ipython，在shell命令前加上!就行了</h2><h2 id="16-同15"><a href="#16-同15" class="headerlink" title="16. 同15"></a>16. 同15</h2><h2 id="17-同15"><a href="#17-同15" class="headerlink" title="17. 同15"></a>17. 同15</h2><h2 id="18-同15，但是切换到ipython后-export设置环境变量没法设置成功，所以采用-env设置了临时环境变量"><a href="#18-同15，但是切换到ipython后-export设置环境变量没法设置成功，所以采用-env设置了临时环境变量" class="headerlink" title="18. 同15，但是切换到ipython后!export设置环境变量没法设置成功，所以采用!env设置了临时环境变量"></a>18. 同15，但是切换到ipython后!export设置环境变量没法设置成功，所以采用!env设置了临时环境变量</h2><h2 id="19-原-来-可-以-用-pwntools，so-以后直接干exp咯"><a href="#19-原-来-可-以-用-pwntools，so-以后直接干exp咯" class="headerlink" title="19. 原 来 可 以 用 pwntools，so 以后直接干exp咯"></a>19. 原 来 可 以 用 pwntools，so 以后直接干exp咯</h2><h2 id="20-pwntools的输出重定向，加了一下布医师傅聊了一下stdout用法，做出来了"><a href="#20-pwntools的输出重定向，加了一下布医师傅聊了一下stdout用法，做出来了" class="headerlink" title="20. pwntools的输出重定向，加了一下布医师傅聊了一下stdout用法，做出来了"></a>20. pwntools的输出重定向，加了一下布医师傅聊了一下stdout用法，做出来了</h2><pre><code>​```python
+from pwn import *
+sh=process([&quot;/challenge/embryoio_level20&quot;], stdout=open(&quot;/tmp/axijfy&quot;, &quot;w&quot;))
+​```
+</code></pre>
+<h2 id="21-利用args即可"><a href="#21-利用args即可" class="headerlink" title="21. 利用args即可"></a>21. 利用args即可</h2><pre><code>​```python
+from pwn import *
+sh=process([&quot;env&quot;, &quot;-i&quot;, &quot;/challenge/embryoio_level21&quot;])
+sh.recv()
+sh.interactive()
+​```
+</code></pre>
+<h2 id="22-python跑py"><a href="#22-python跑py" class="headerlink" title="22. python跑py"></a>22. python跑py</h2><h2 id="23-同22"><a href="#23-同22" class="headerlink" title="23. 同22"></a>23. 同22</h2><h2 id="24-同22"><a href="#24-同22" class="headerlink" title="24. 同22"></a>24. 同22</h2><h2 id="25-同22，试了一下列表里加export还是不行，可能得找路径，但是我选择env"><a href="#25-同22，试了一下列表里加export还是不行，可能得找路径，但是我选择env" class="headerlink" title="25. 同22，试了一下列表里加export还是不行，可能得找路径，但是我选择env"></a>25. 同22，试了一下列表里加export还是不行，可能得找路径，但是我选择env</h2><h2 id="26-删去交互，两次print-recv-可以避免报错（在我这是这样的）"><a href="#26-删去交互，两次print-recv-可以避免报错（在我这是这样的）" class="headerlink" title="26. 删去交互，两次print(recv())可以避免报错（在我这是这样的）"></a>26. 删去交互，两次print(recv())可以避免报错（在我这是这样的）</h2><h2 id="27-同20，但是存在一些bug，依旧是interactive导致，不报错无法写入，报错后删去interactive却依旧可以写入，抽象"><a href="#27-同20，但是存在一些bug，依旧是interactive导致，不报错无法写入，报错后删去interactive却依旧可以写入，抽象" class="headerlink" title="27. 同20，但是存在一些bug，依旧是interactive导致，不报错无法写入，报错后删去interactive却依旧可以写入，抽象"></a>27. 同20，但是存在一些bug，依旧是interactive导致，不报错无法写入，报错后删去interactive却依旧可以写入，抽象</h2><h2 id="28-同21"><a href="#28-同21" class="headerlink" title="28. 同21"></a>28. 同21</h2><h2 id="29-wait-NULL-很关键，让子进程先运行结束，否则则是父进程先，而导致检测失败"><a href="#29-wait-NULL-很关键，让子进程先运行结束，否则则是父进程先，而导致检测失败" class="headerlink" title="29. wait(NULL)很关键，让子进程先运行结束，否则则是父进程先，而导致检测失败"></a>29. wait(NULL)很关键，让子进程先运行结束，否则则是父进程先，而导致检测失败</h2><pre><code>​```c++
+#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include &lt;unistd.h&gt;
+#include&lt;sys/wait.h&gt;
+using namespace std;
+int pwncollege() &#123;
+        return 0;
+&#125;
+
+int main() &#123;
+        int pid = fork();
+
+        if(pid == -1) &#123;
+                cout &lt;&lt; &quot;fork error&quot;;
+        &#125;
+
+        else if (pid == 0) &#123;
+                int test;
+                if(execl(&quot;/challenge/embryoio_level29&quot;, NULL) == -1) &#123;
+                        cout &lt;&lt; &quot;execl error&quot;;
+                        exit(-1);
+                &#125;
+        &#125;
+        else &#123;
+                wait(NULL);
+                cout&lt;&lt;&quot;crazy&quot;;
+                exit(0);
+        &#125;
+        return 0;
+&#125;
+​```
+
+​
+</code></pre>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>Author：</strong>Thule<br>
+        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/03/08/Project-run-010/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;08&#x2F;Project-run-010&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;08&#x2F;Project-run-010&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/pwn-college/" rel="tag">pwn college</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80"><span class="toc-number">1.</span> <span class="toc-text">1. 直接打开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B9%E6%8D%AEinfo%E8%BE%93%E5%85%A5%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">2. 根据info输入值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AEarg"><span class="toc-number">3.</span> <span class="toc-text">3. 设置arg</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-info%E6%8F%90%E5%88%B0%E4%BA%86environment-variable%E6%89%80%E4%BB%A5export%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">4. info提到了environment variable所以export设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">5.</span> <span class="toc-text">5. 输入重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">6.</span> <span class="toc-text">6. 输出重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%B8%8D%E8%83%BD%E4%B8%80%E4%B8%AA%E4%B8%80%E4%B8%AAunset%EF%BC%8C%E4%B8%8D%E4%BB%85%E5%82%BB%E9%80%BC%E8%BF%98%E6%80%BB%E6%98%AF%E5%89%A9%E4%B8%80%E4%B8%AA%EF%BC%8C%E5%8A%A0%E4%B8%8Aenv-i%E5%B0%B1%E8%A1%8C%E4%BA%86"><span class="toc-number">7.</span> <span class="toc-text">7. 不能一个一个unset，不仅傻逼还总是剩一个，加上env -i就行了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%9C%A8home%E6%96%87%E4%BB%B6%E5%A4%B9%E5%86%99bash%E8%84%9A%E6%9C%AC%EF%BC%8C%E7%94%A8bash%E8%BF%90%E8%A1%8C"><span class="toc-number">8.</span> <span class="toc-text">8. 在home文件夹写bash脚本，用bash运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%90%8C8%EF%BC%8C%E7%84%B6%E5%90%8E%E6%89%8B%E5%8A%A8%E8%BE%93%E5%85%A5"><span class="toc-number">9.</span> <span class="toc-text">9. 同8，然后手动输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%90%8C9%EF%BC%8C%E5%8A%A0%E5%8F%82%E6%95%B0"><span class="toc-number">10.</span> <span class="toc-text">10. 同9，加参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%90%8C9"><span class="toc-number">11.</span> <span class="toc-text">11. 同9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%90%8C9%EF%BC%8Cbash%E8%84%9A%E6%9C%AC%E5%8A%A0%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91-lt-tmp%E4%B8%8B%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-number">12.</span> <span class="toc-text">12. 同9，bash脚本加入重定向 &lt; tmp下那个文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E5%90%8C9%EF%BC%8Cbash%E8%84%9A%E6%9C%AC%E5%8A%A0%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91-gt-%E5%88%B0tmp%E4%B8%8B%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6"><span class="toc-number">13.</span> <span class="toc-text">13. 同9，bash脚本加入重定向 &gt; 到tmp下那个文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%90%8C9%EF%BC%8C%E5%8A%A0%E5%89%8D%E7%BC%80"><span class="toc-number">14.</span> <span class="toc-text">14. 同9，加前缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E5%88%87%E6%8D%A2%E5%88%B0ipython%EF%BC%8C%E5%9C%A8shell%E5%91%BD%E4%BB%A4%E5%89%8D%E5%8A%A0%E4%B8%8A-%E5%B0%B1%E8%A1%8C%E4%BA%86"><span class="toc-number">15.</span> <span class="toc-text">15. 切换到ipython，在shell命令前加上!就行了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E5%90%8C15"><span class="toc-number">16.</span> <span class="toc-text">16. 同15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%90%8C15"><span class="toc-number">17.</span> <span class="toc-text">17. 同15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%90%8C15%EF%BC%8C%E4%BD%86%E6%98%AF%E5%88%87%E6%8D%A2%E5%88%B0ipython%E5%90%8E-export%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%B2%A1%E6%B3%95%E8%AE%BE%E7%BD%AE%E6%88%90%E5%8A%9F%EF%BC%8C%E6%89%80%E4%BB%A5%E9%87%87%E7%94%A8-env%E8%AE%BE%E7%BD%AE%E4%BA%86%E4%B8%B4%E6%97%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">18.</span> <span class="toc-text">18. 同15，但是切换到ipython后!export设置环境变量没法设置成功，所以采用!env设置了临时环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E5%8E%9F-%E6%9D%A5-%E5%8F%AF-%E4%BB%A5-%E7%94%A8-pwntools%EF%BC%8Cso-%E4%BB%A5%E5%90%8E%E7%9B%B4%E6%8E%A5%E5%B9%B2exp%E5%92%AF"><span class="toc-number">19.</span> <span class="toc-text">19. 原 来 可 以 用 pwntools，so 以后直接干exp咯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#20-pwntools%E7%9A%84%E8%BE%93%E5%87%BA%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E5%8A%A0%E4%BA%86%E4%B8%80%E4%B8%8B%E5%B8%83%E5%8C%BB%E5%B8%88%E5%82%85%E8%81%8A%E4%BA%86%E4%B8%80%E4%B8%8Bstdout%E7%94%A8%E6%B3%95%EF%BC%8C%E5%81%9A%E5%87%BA%E6%9D%A5%E4%BA%86"><span class="toc-number">20.</span> <span class="toc-text">20. pwntools的输出重定向，加了一下布医师傅聊了一下stdout用法，做出来了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#21-%E5%88%A9%E7%94%A8args%E5%8D%B3%E5%8F%AF"><span class="toc-number">21.</span> <span class="toc-text">21. 利用args即可</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22-python%E8%B7%91py"><span class="toc-number">22.</span> <span class="toc-text">22. python跑py</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#23-%E5%90%8C22"><span class="toc-number">23.</span> <span class="toc-text">23. 同22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#24-%E5%90%8C22"><span class="toc-number">24.</span> <span class="toc-text">24. 同22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#25-%E5%90%8C22%EF%BC%8C%E8%AF%95%E4%BA%86%E4%B8%80%E4%B8%8B%E5%88%97%E8%A1%A8%E9%87%8C%E5%8A%A0export%E8%BF%98%E6%98%AF%E4%B8%8D%E8%A1%8C%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%BE%97%E6%89%BE%E8%B7%AF%E5%BE%84%EF%BC%8C%E4%BD%86%E6%98%AF%E6%88%91%E9%80%89%E6%8B%A9env"><span class="toc-number">25.</span> <span class="toc-text">25. 同22，试了一下列表里加export还是不行，可能得找路径，但是我选择env</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#26-%E5%88%A0%E5%8E%BB%E4%BA%A4%E4%BA%92%EF%BC%8C%E4%B8%A4%E6%AC%A1print-recv-%E5%8F%AF%E4%BB%A5%E9%81%BF%E5%85%8D%E6%8A%A5%E9%94%99%EF%BC%88%E5%9C%A8%E6%88%91%E8%BF%99%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84%EF%BC%89"><span class="toc-number">26.</span> <span class="toc-text">26. 删去交互，两次print(recv())可以避免报错（在我这是这样的）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#27-%E5%90%8C20%EF%BC%8C%E4%BD%86%E6%98%AF%E5%AD%98%E5%9C%A8%E4%B8%80%E4%BA%9Bbug%EF%BC%8C%E4%BE%9D%E6%97%A7%E6%98%AFinteractive%E5%AF%BC%E8%87%B4%EF%BC%8C%E4%B8%8D%E6%8A%A5%E9%94%99%E6%97%A0%E6%B3%95%E5%86%99%E5%85%A5%EF%BC%8C%E6%8A%A5%E9%94%99%E5%90%8E%E5%88%A0%E5%8E%BBinteractive%E5%8D%B4%E4%BE%9D%E6%97%A7%E5%8F%AF%E4%BB%A5%E5%86%99%E5%85%A5%EF%BC%8C%E6%8A%BD%E8%B1%A1"><span class="toc-number">27.</span> <span class="toc-text">27. 同20，但是存在一些bug，依旧是interactive导致，不报错无法写入，报错后删去interactive却依旧可以写入，抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#28-%E5%90%8C21"><span class="toc-number">28.</span> <span class="toc-text">28. 同21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#29-wait-NULL-%E5%BE%88%E5%85%B3%E9%94%AE%EF%BC%8C%E8%AE%A9%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%85%88%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9D%9F%EF%BC%8C%E5%90%A6%E5%88%99%E5%88%99%E6%98%AF%E7%88%B6%E8%BF%9B%E7%A8%8B%E5%85%88%EF%BC%8C%E8%80%8C%E5%AF%BC%E8%87%B4%E6%A3%80%E6%B5%8B%E5%A4%B1%E8%B4%A5"><span class="toc-number">29.</span> <span class="toc-text">29. wait(NULL)很关键，让子进程先运行结束，否则则是父进程先，而导致检测失败</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1647343340746"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>

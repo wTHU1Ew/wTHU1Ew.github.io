@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    
+    <title>Project-run-012 - Hexo</title>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    
+    
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/avatar.png" type="image/png" />
+    <meta name="description" content="pwn college 第二章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project-run-012">
+<meta property="og:url" content="https://wthu1ew.github.io/2022/03/11/Project-run-012/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="pwn college 第二章">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-11T07:40:26.000Z">
+<meta property="article:modified_time" content="2022-03-15T04:23:28.752Z">
+<meta property="article:author" content="Thule">
+<meta property="article:tag" content="pwn college">
+<meta name="twitter:card" content="summary">
+    <link rel="stylesheet" href="/lib/jquery.fancybox.min.css?v=1647343340735">
+    
+    <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css?v=1647343340735">
+    <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1647343340735">
+    <link rel="stylesheet" href="/css/style.css?v=1647343340735">
+     
+    
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="mdui-drawer-body-left">
+    
+    <div id="nexmoe-background">
+        <div class="nexmoe-bg" style="background-image: url(https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg)"></div>
+        <div class="mdui-appbar mdui-shadow-0">
+            <div class="mdui-toolbar">
+                <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+                <div class="mdui-toolbar-spacer"></div>
+                <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+                <a href="/" title="Thule" class="mdui-btn mdui-btn-icon"><img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule"></a>
+            </div>
+        </div>
+    </div>
+    <div id="nexmoe-header">
+        <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="Thule">
+            <img src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/mushimaro8.jpg" alt="Thule" alt="Thule">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>Articles</span>16</div>
+        <div><span>Tags</span>3</div>
+        <div><span>Categories</span>0</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/archive.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+         
+            <form id="search_form" action_e="https://cn.bing.com/search?q=site:wthu1ew.github.io" onsubmit="return search();">
+                <label><input id="search_value" name="q" type="search" placeholder="Search"></label>
+            </form>
+         
+    </div>
+</div>
+    
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://space.bilibili.com/24049194" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/wTHU1Ew/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+    
+    
+
+    
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/Project-run/" style="font-size: 20px;">Project-run</a> <a href="/tags/pwn-coellege/" style="font-size: 10px;">pwn coellege</a> <a href="/tags/pwn-college/" style="font-size: 15px;">pwn college</a>
+    </div>
+    
+  </div>
+
+    
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 Thule
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+    </div>
+    <div id="nexmoe-content">
+        <div class="nexmoe-primary">
+            <div class="nexmoe-post">
+
+  <article>
+      
+          <div class="nexmoe-post-cover" style="padding-bottom: 67.21948691370821%;"> 
+              <img data-src="https://raw.githubusercontent.com/wTHU1Ew/wTHU1Ew.github.io/main/Tsunami.jpg" data-sizes="auto" alt="Project-run-012" class="lazyload">
+              <h1>Project-run-012</h1>
+          </div>
+      
+      
+      <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年03月11日</a>
+</div>
+
+      
+
+      <p>pwn college 第二章</p>
+<span id="more"></span>
+
+<h2 id="76-python的只用一个环境变量启动"><a href="#76-python的只用一个环境变量启动" class="headerlink" title="76. python的只用一个环境变量启动"></a>76. python的只用一个环境变量启动</h2><pre><code>​```python
+from pwn import *
+start=[&quot;env&quot;,&quot;-i&quot;, &quot;138=yywwblelug&quot;, &quot;/challenge/embryoio_level76&quot;]
+sh = process(start)
+sh.interactive()
+​```
+</code></pre>
+<h2 id="77-多参数-单环境变量"><a href="#77-多参数-单环境变量" class="headerlink" title="77. 多参数+单环境变量"></a>77. 多参数+单环境变量</h2><pre><code>​```python
+from pwn import *
+start=[&quot;env&quot;, &quot;-i&quot;, &quot;73=ginplctvuq&quot;, &quot;/challenge/embryoio_level77&quot;]
+for i in range(90):
+    start.append(&quot;ckfiyfirjd&quot;)
+sh = process(start)
+sh.interactive()
+​```
+</code></pre>
+<h2 id="78-不是用管道，而是输入重定向，并且要用指定工作目录"><a href="#78-不是用管道，而是输入重定向，并且要用指定工作目录" class="headerlink" title="78. 不是用管道，而是输入重定向，并且要用指定工作目录"></a>78. 不是用管道，而是输入重定向，并且要用指定工作目录</h2><pre><code>​```python
+from pwn import *
+
+p=open(&quot;ifozkt&quot;, &quot;w&quot;)
+sh=process(&quot;/challenge/embryoio_level78&quot;, stdin=p.fileno())
+print(sh.recv())
+print(sh.recv())
+p.close()
+​```
+</code></pre>
+<h2 id="79-argv里用cd不行，cd并不是bin目录中的玩意，而是系统自带的"><a href="#79-argv里用cd不行，cd并不是bin目录中的玩意，而是系统自带的" class="headerlink" title="79. argv里用cd不行，cd并不是bin目录中的玩意，而是系统自带的"></a>79. argv里用cd不行，cd并不是bin目录中的玩意，而是系统自带的</h2><pre><code>cwd是设置workspace，executable是指定argv[0]的可执行文件所在目录（而不是命令行的意思）
+
+​```python
+from pwn import *
+
+p=open(&quot;ifozkt&quot;, &quot;w&quot;)
+sh=process([&quot;/challenge/embryoio_level79&quot;], stdin=p.fileno(),cwd=&quot;/tmp/doektz&quot;)
+sh.interactive()
+​```
+</code></pre>
+<h2 id="80-cpp多参数启动程序"><a href="#80-cpp多参数启动程序" class="headerlink" title="80. cpp多参数启动程序"></a>80. cpp多参数启动程序</h2><pre><code>​```c++
+#include &lt;unistd.h&gt;
+#include &lt;cstring&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;iostream&gt;
+
+#define NUM 300
+
+using namespace std;
+
+int pwncollege();
+
+int main() &#123;
+    pid_t fd;
+    
+    char * cmd[] = &#123;&quot;/challenge/embryoio_level80&quot;, NULL&#125;;
+    char * argv[NUM] = &#123;&quot;/challenge/embryoio_level80&quot;, NULL&#125;;
+    char * envp[] = &#123;NULL&#125;;
+    for(int i = 1; i &lt; NUM -1; i++) &#123;
+        argv[i] = &quot;bzudqxryyw&quot;;
+    &#125;
+    argv[NUM - 1] = NULL;
+    
+    if((fd=fork())==0)&#123;
+        execve(cmd[0], argv, envp);
+    &#125;
+    int s1;
+    waitpid(fd, &amp;s1, 0);
+    return 0;
+&#125;
+
+int pwncollege() &#123;
+    return 0;
+&#125;
+
+​```
+</code></pre>
+<h2 id="81-cpp无参数启动，就是argv设置为NULL咯～"><a href="#81-cpp无参数启动，就是argv设置为NULL咯～" class="headerlink" title="81. cpp无参数启动，就是argv设置为NULL咯～"></a>81. cpp无参数启动，就是argv设置为NULL咯～</h2><pre><code>​```c++
+#include &lt;unistd.h&gt;
+#include &lt;cstring&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;iostream&gt;
+
+#define NUM 300
+
+using namespace std;
+
+int pwncollege();
+
+int main() &#123;
+    pid_t fd;
+    
+    char * cmd[] = &#123;&quot;/challenge/embryoio_level81&quot;, NULL&#125;;
+    char * argv[NUM] = &#123;&quot;/challenge/embryoio_level81&quot;, NULL&#125;;
+    char * envp[] = &#123;NULL&#125;;
+    for(int i = 1; i &lt; NUM -1; i++) &#123;
+        argv[i] = &quot;bzudqxryyw&quot;;
+    &#125;
+    argv[NUM - 1] = NULL;
+    
+    if((fd=fork())==0)&#123;
+        execve(cmd[0], NULL, envp);
+    &#125;
+    int s1;
+    waitpid(fd, &amp;s1, 0);
+    return 0;
+&#125;
+
+int pwncollege() &#123;
+    return 0;
+&#125;
+
+​```
+</code></pre>
+<h2 id="82-cpp带环境变量启动，设置envp就行了"><a href="#82-cpp带环境变量启动，设置envp就行了" class="headerlink" title="82. cpp带环境变量启动，设置envp就行了"></a>82. cpp带环境变量启动，设置envp就行了</h2><pre><code>​```c++
+#include &lt;unistd.h&gt;
+#include &lt;cstring&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;iostream&gt;
+
+#define NUM 300
+
+using namespace std;
+
+int pwncollege();
+
+int main() &#123;
+    pid_t fd;
+    
+    char * cmd[] = &#123;&quot;/challenge/embryoio_level82&quot;, NULL&#125;;
+    char * argv[NUM] = &#123;&quot;/challenge/embryoio_level82&quot;, NULL&#125;;
+    char * envp[] = &#123;&quot;248=idctlhchch&quot;&#125;;
+    for(int i = 1; i &lt; NUM -1; i++) &#123;
+        argv[i] = &quot;bzudqxryyw&quot;;
+    &#125;
+    argv[NUM - 1] = NULL;
+    
+    if((fd=fork())==0)&#123;
+        execve(cmd[0], NULL, envp);
+    &#125;
+    int s1;
+    waitpid(fd, &amp;s1, 0);
+    return 0;
+&#125;
+
+int pwncollege() &#123;
+    return 0;
+&#125;
+
+​```
+</code></pre>
+<h2 id="83-nothing-was-happened-in-Tiananmen-Square"><a href="#83-nothing-was-happened-in-Tiananmen-Square" class="headerlink" title="83. nothing was happened in Tiananmen Square~"></a>83. nothing was happened in Tiananmen Square~</h2><h2 id="84-cpp重定向见31，记得随机文件要在那个随机文件夹下面"><a href="#84-cpp重定向见31，记得随机文件要在那个随机文件夹下面" class="headerlink" title="84. cpp重定向见31，记得随机文件要在那个随机文件夹下面"></a>84. cpp重定向见31，记得随机文件要在那个随机文件夹下面</h2><pre><code>​```c++
+#include &lt;unistd.h&gt;
+#include &lt;cstring&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;iostream&gt;
+
+#define NUM 300
+
+using namespace std;
+
+int pwncollege();
+
+int main() &#123;
+    pid_t fd;
+    
+    char * cmd[] = &#123;&quot;/challenge/embryoio_level84&quot;, NULL&#125;;
+    char * argv[NUM] = &#123;&quot;/challenge/embryoio_level84&quot;, NULL&#125;;
+    char * envp[] = &#123;&quot;318=ncoszaklgf&quot;&#125;;
+    for(int i = 1; i &lt; NUM -1; i++) &#123;
+        argv[i] = &quot;qnolkcgwbm&quot;;
+    &#125;
+    argv[NUM - 1] = NULL;
+    
+    if((fd=fork())==0)&#123;
+        
+        chdir(&quot;/tmp/ymtphu&quot;);
+        freopen(&quot;./zehqpr&quot;, &quot;r&quot;, stdin);
+        execve(cmd[0], argv, envp);
+    &#125;
+    int s1;
+    waitpid(fd, &amp;s1, 0);
+    return 0;
+&#125;
+
+int pwncollege() &#123;
+    return 0;
+&#125;
+
+​```
+</code></pre>
+<h2 id="85-不如84难度"><a href="#85-不如84难度" class="headerlink" title="85. 不如84难度"></a>85. 不如84难度</h2><ol start="86">
+<li><p>算数？</p>
+</li>
+<li><p>我是按计算器的…因为他没设置时间限制</p>
+</li>
+</ol>
+<p>88.🇺🇦<br>   <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ln -s /challenge/... /tmp...<br></code></pre></td></tr></table></figure><br>然后在bash脚本里运行别名</p>
+<ol start="89">
+<li><p>改变PATH</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">export PATH=./:PATH<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>学会mkfifo后开俩终端就行了</p>
+</li>
+</ol>
+<p>anki背了150张卡片，背麻了</p>
+
+  </article>
+
+  
+      
+    <div class="nexmoe-post-copyright">
+        <strong>Author：</strong>Thule<br>
+        <strong>Link：</strong><a href="https://wthu1ew.github.io/2022/03/11/Project-run-012/" title="https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;11&#x2F;Project-run-012&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;wthu1ew.github.io&#x2F;2022&#x2F;03&#x2F;11&#x2F;Project-run-012&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/pwn-college/" rel="tag">pwn college</a>
+    
+</div>
+
+  
+      <div class="nexmoe-post-footer">
+          <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '80b2453b6d5f37ad6225',
+        clientSecret: '43e99fa852795c9a7b3eb924b2558c64b84bbdeb',
+        id: window.location.pathname,
+        repo: 'nexmoe.github.io',
+        owner: 'nexmoe',
+        admin: 'nexmoe'
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+      </div>
+  
+</div>
+            <div class="nexmoe-post-right">
+              <div class="nexmoe-fixed">
+                  <div class="nexmoe-tool"> 
+                    
+                      
+                        
+                          
+                          
+                              <button class="mdui-fab catalog" style="overflow:unset;">
+                                  <i class="nexmoefont icon-i-catalog"></i>
+                                  <div class="nexmoe-toc">
+                                      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#76-python%E7%9A%84%E5%8F%AA%E7%94%A8%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%90%AF%E5%8A%A8"><span class="toc-number">1.</span> <span class="toc-text">76. python的只用一个环境变量启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#77-%E5%A4%9A%E5%8F%82%E6%95%B0-%E5%8D%95%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">77. 多参数+单环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#78-%E4%B8%8D%E6%98%AF%E7%94%A8%E7%AE%A1%E9%81%93%EF%BC%8C%E8%80%8C%E6%98%AF%E8%BE%93%E5%85%A5%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E5%B9%B6%E4%B8%94%E8%A6%81%E7%94%A8%E6%8C%87%E5%AE%9A%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">3.</span> <span class="toc-text">78. 不是用管道，而是输入重定向，并且要用指定工作目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#79-argv%E9%87%8C%E7%94%A8cd%E4%B8%8D%E8%A1%8C%EF%BC%8Ccd%E5%B9%B6%E4%B8%8D%E6%98%AFbin%E7%9B%AE%E5%BD%95%E4%B8%AD%E7%9A%84%E7%8E%A9%E6%84%8F%EF%BC%8C%E8%80%8C%E6%98%AF%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6%E7%9A%84"><span class="toc-number">4.</span> <span class="toc-text">79. argv里用cd不行，cd并不是bin目录中的玩意，而是系统自带的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#80-cpp%E5%A4%9A%E5%8F%82%E6%95%B0%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.</span> <span class="toc-text">80. cpp多参数启动程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#81-cpp%E6%97%A0%E5%8F%82%E6%95%B0%E5%90%AF%E5%8A%A8%EF%BC%8C%E5%B0%B1%E6%98%AFargv%E8%AE%BE%E7%BD%AE%E4%B8%BANULL%E5%92%AF%EF%BD%9E"><span class="toc-number">6.</span> <span class="toc-text">81. cpp无参数启动，就是argv设置为NULL咯～</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#82-cpp%E5%B8%A6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%90%AF%E5%8A%A8%EF%BC%8C%E8%AE%BE%E7%BD%AEenvp%E5%B0%B1%E8%A1%8C%E4%BA%86"><span class="toc-number">7.</span> <span class="toc-text">82. cpp带环境变量启动，设置envp就行了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#83-nothing-was-happened-in-Tiananmen-Square"><span class="toc-number">8.</span> <span class="toc-text">83. nothing was happened in Tiananmen Square~</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#84-cpp%E9%87%8D%E5%AE%9A%E5%90%91%E8%A7%8131%EF%BC%8C%E8%AE%B0%E5%BE%97%E9%9A%8F%E6%9C%BA%E6%96%87%E4%BB%B6%E8%A6%81%E5%9C%A8%E9%82%A3%E4%B8%AA%E9%9A%8F%E6%9C%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E9%9D%A2"><span class="toc-number">9.</span> <span class="toc-text">84. cpp重定向见31，记得随机文件要在那个随机文件夹下面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#85-%E4%B8%8D%E5%A6%8284%E9%9A%BE%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text">85. 不如84难度</span></a></li></ol>
+                                  </div>
+                              </button>
+                          
+                          
+                      
+                    
+                      <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+     
+    <div id="nexmoe-search-space">
+        <div class="search-container">
+            <div class="search-header">
+                <div class="search-input-container">
+                    <input class="search-input" type="text" placeholder="Search" oninput="sinput();">
+                </div>
+                <a class="search-close" onclick="sclose();">×</a>
+            </div>
+            <div class="search-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ 
+
+<script async src="/js/app.js?v=1647343340738"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+
+    
+
+
+
+
+
+</body>
+
+</html>
